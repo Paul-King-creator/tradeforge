@@ -108,7 +108,7 @@ class TradeForgePro:
                 features = TradeFeatures(
                     ticker=ticker,
                     strategy='quality_setup',
-                    entry_price=df['close'].iloc[-1],
+                    entry_price=df['Close'].iloc[-1],
                     leverage=2,
                     confidence=0.7
                 )
