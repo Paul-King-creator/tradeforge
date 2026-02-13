@@ -47,6 +47,20 @@ class TradeForge:
         self.learning_engine = LearningEngine()
         self.adaptive_optimizer = AdaptiveOptimizer()
         
+        # Telegram Notifier (für automatische Reports)
+        self.telegram = None
+        if self.config.get('reporting', {}).get('telegram_enabled', False):
+            from telegram_notifier import TelegramNotifier
+            self.telegram = TelegramNotifier(
+                chat_id=self.config['reporting'].get('telegram_chat_id')
+            )
+            if self.telegram.enabled:
+                self.telegram.send_simple_message(
+                    "🤖 TradeForge gestartet!\n"
+                    "📊 Tägliche Reports um 18:00 UTC\n"
+                    "✅ Du erhältst Updates über deine Trades."
+                )
+        
         # ML Optimizer initialisieren
         self.ml_optimizer = None
         if ML_AVAILABLE and MLStrategyOptimizer:
@@ -250,6 +264,38 @@ class TradeForge:
         # Signale speichern
         if self.todays_signals:
             self.reporter.save_signals_json(self.todays_signals, datetime.now())
+        
+        # 📱 Telegram Report senden
+        if self.telegram and self.telegram.enabled:
+            print("\n📱 Sende Report via Telegram...")
+            
+            # Kurze Zusammenfassung für Telegram
+            telegram_msg = f"""🤖 <b>TradeForge Daily Report</b>
+📅 {datetime.now().strftime('%Y-%m-%d')}
+
+💰 <b>Portfolio:</b> ${performance.get('portfolio_value', 10000):.2f}
+📊 <b>Trades heute:</b> {performance.get('total_trades', 0)}
+🎯 <b>Win Rate:</b> {performance.get('win_rate', 0):.1f}%
+📈 <b>Open Positions:</b> {len(open_positions)}
+
+<b>Strategien:</b>"""
+            
+            for stat in strategy_stats:
+                emoji = "🟢" if stat['win_rate'] >= 50 else "🔴"
+                telegram_msg += f"\n{emoji} {stat['strategy'][:15]}: {stat['win_rate']:.0f}% WR ({stat['total_trades']} trades)"
+            
+            if self.ml_optimizer and hasattr(self.ml_optimizer, 'models') and self.ml_optimizer.models:
+                telegram_msg += "\n\n🧠 <b>ML Models aktiv!</b>"
+                for strategy, model in self.ml_optimizer.models.items():
+                    telegram_msg += f"\n   {strategy}: {model['accuracy']:.0%} accuracy"
+            
+            telegram_msg += "\n\n⏰ Nächster Report: Morgen 18:00 UTC"
+            
+            sent = self.telegram.send_simple_message(telegram_msg)
+            if sent:
+                print("   ✅ Telegram Report gesendet!")
+            else:
+                print("   ⚠️  Telegram Send failed")
         
         # Zurücksetzen für nächsten Tag
         self.todays_signals = []

@@ -48,6 +48,7 @@ data:
   
 # Reporting
 reporting:
-  telegram_enabled: false
+  telegram_enabled: true
+  telegram_chat_id: 647601841  # Deine Telegram ID
   save_charts: true
   detail_level: "high"         # low/medium/high
