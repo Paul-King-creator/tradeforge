@@ -61,19 +61,25 @@ class QualityStrategyEngine:
         signals_found = []
         
         # Signal 1: RSI Oversold + Bounce
-        if last['RSI'] < 30 and last['close'] > last['open']:
+        if last.get('RSI', 50) < 30 and last['Close'] > last['Open']:
             signals_found.append(('RSI_OVERSOLD', 0.3))
         
         # Signal 2: MACD Kreuzung
-        if last['MACD'] > last['MACD_Signal'] and df.iloc[-2]['MACD'] <= df.iloc[-2]['MACD_Signal']:
-            signals_found.append(('MACD_CROSS', 0.3))
+        if last.get('MACD', 0) > last.get('MACD_Signal', 0):
+            if df.iloc[-2].get('MACD', 0) <= df.iloc[-2].get('MACD_Signal', 0):
+                signals_found.append(('MACD_CROSS', 0.3))
         
         # Signal 3: Bollinger Bounce
-        if last['close'] <= last['BB_Lower'] * 1.02:
+        if last.get('BB_Lower') and last['Close'] <= last['BB_Lower'] * 1.02:
             signals_found.append(('BB_BOUNCE', 0.2))
         
-        # Signal 4: Volume Spike
-        if last['Volume_Ratio'] > 1.5:
+        # Signal 4: Volume Spike (berechnen falls nicht vorhanden)
+        volume_ratio = last.get('Volume_Ratio', 1.0)
+        if 'Volume' in last and len(df) > 20:
+            avg_volume = df['Volume'].tail(20).mean()
+            volume_ratio = last['Volume'] / avg_volume if avg_volume > 0 else 1.0
+        
+        if volume_ratio > 1.5:
             signals_found.append(('VOLUME_SPIKE', 0.2))
         
         # Signal 5: Trend Alignment
@@ -91,7 +97,7 @@ class QualityStrategyEngine:
             return None
         
         # Risk/Reward berechnen
-        entry = last['close']
+        entry = last['Close']
         atr = last.get('ATR', entry * 0.02)
         
         # Stop Loss: ATR-basiert oder 2%
@@ -140,8 +146,8 @@ class QualityStrategyEngine:
             return 0
         
         # EMAs
-        ema9 = df['close'].ewm(span=9).mean().iloc[-1]
-        ema21 = df['close'].ewm(span=21).mean().iloc[-1]
+        ema9 = df['Close'].ewm(span=9).mean().iloc[-1]
+        ema21 = df['Close'].ewm(span=21).mean().iloc[-1]
         
         if ema9 > ema21:
             return 0.2

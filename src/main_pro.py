@@ -73,7 +73,7 @@ class TradeForgePro:
         
         # 1. Marktdaten laden
         print("📊 Lade Marktdaten...")
-        market_data = self.data_fetcher.get_multiple_data(
+        market_data = self.data_fetcher.get_watchlist_data(
             self.config['watchlist'],
             period="2d",
             interval="15m"
@@ -98,6 +98,8 @@ class TradeForgePro:
         new_trades = 0
         
         for ticker, df in market_data.items():
+            # Spalten zu Kleinbuchstaben für Indikatoren
+            df.columns = [c.lower() for c in df.columns]
             # Indikatoren hinzufügen
             df = self.analyzer.add_indicators(df)
             
