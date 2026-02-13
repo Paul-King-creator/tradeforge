@@ -98,8 +98,6 @@ class TradeForgePro:
         new_trades = 0
         
         for ticker, df in market_data.items():
-            # Spalten zu Kleinbuchstaben für Indikatoren
-            df.columns = [c.lower() for c in df.columns]
             # Indikatoren hinzufügen
             df = self.analyzer.add_indicators(df)
             
