@@ -46,11 +46,7 @@ class QualityStrategyEngine:
         
         last = df.iloc[-1]
         
-        # 1. Kein Overtrading (max 1 pro Tag pro Ticker)
-        if self.today_trades.get(ticker, 0) >= 1:
-            return None
-        
-        # 2. ML Prediction prüfen
+        # 1. ML Prediction prüfen
         if ml_prediction:
             if not ml_prediction.get('should_trade', False):
                 return None
@@ -125,9 +121,6 @@ class QualityStrategyEngine:
         if ml_prediction:
             setup_desc += f" | ML: {ml_prediction['success_probability']:.0%}"
         
-        # Trade Counter erhöhen
-        self.today_trades[ticker] = self.today_trades.get(ticker, 0) + 1
-        
         return Signal(
             ticker=ticker,
             signal_type='buy',
@@ -166,5 +159,5 @@ class QualityStrategyEngine:
         return 0
     
     def reset_daily(self):
-        """Reset für neuen Tag"""
-        self.today_trades = {}
+        """Reset für neuen Tag (nicht mehr benötigt aber für Kompatibilität)"""
+        pass

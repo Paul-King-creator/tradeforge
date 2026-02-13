@@ -1,54 +1,90 @@
+# TradeForge Pro Konfiguration
+# 50 Day-Trading geeignete Aktien
+
 watchlist:
+  # Large Cap Tech - Hohe Liquidität, Volatilität
   - AAPL    # Apple
-  - MSFT    # Microsoft
+  - MSFT    # Microsoft  
   - NVDA    # NVIDIA
+  - AMD     # AMD
   - AMZN    # Amazon
   - GOOGL   # Alphabet
   - META    # Meta
+  - NFLX    # Netflix
   - TSLA    # Tesla
-  - BRK-B   # Berkshire Hathaway
+  - CRM     # Salesforce
+  
+  # Semiconductors
   - AVGO    # Broadcom
-  - JPM     # JPMorgan Chase
+  - QCOM    # Qualcomm
+  - INTC    # Intel
+  - MU      # Micron
+  - LRCX    # Lam Research
+  - KLAC    # KLA Corp
+  
+  # Financials
+  - JPM     # JPMorgan
+  - BAC     # Bank of America
+  - GS      # Goldman Sachs
+  - MS      # Morgan Stanley
+  - WFC     # Wells Fargo
+  - C       # Citigroup
+  - V       # Visa
+  - MA      # Mastercard
+  
+  # Healthcare
+  - JNJ     # Johnson & Johnson
+  - PFE     # Pfizer
+  - UNH     # UnitedHealth
+  - ABBV    # AbbVie
+  - LLY     # Eli Lilly
+  - MRK     # Merck
+  - BMY     # Bristol Myers
+  
+  # Energy
+  - XOM     # Exxon
+  - CVX     # Chevron
+  - COP     # ConocoPhillips
+  - SLB     # Schlumberger
+  
+  # Industrials
+  - BA      # Boeing
+  - CAT     # Caterpillar
+  - GE      # General Electric
+  - HON     # Honeywell
+  - UPS     # UPS
+  
+  # Consumer
+  - WMT     # Walmart
+  - HD      # Home Depot
+  - COST    # Costco
+  - NKE     # Nike
+  - SBUX    # Starbucks
+  - MCD     # McDonald's
+  
+  # ETFs (für Sektor-Rotation)
+  - SPY     # S&P 500 ETF
+  - QQQ     # Nasdaq 100 ETF
+  - IWM     # Russell 2000 ETF
+  - XLK     # Technology ETF
+  - XLF     # Financials ETF
+  - XLE     # Energy ETF
+  - XLI     # Industrials ETF
 
 # Trading Konfiguration
 trading:
-  initial_capital: 10000        # Startkapital in USD
-  risk_per_trade: 0.02          # 2% Risiko pro Trade
-  max_leverage: 10              # Maximaler Hebel
-  max_open_positions: 5         # Max gleichzeitige Trades
+  position_size: 100           # Fix $100 pro Trade
+  risk_per_trade: 0.02         # Max 2% Risiko
+  max_leverage: 5              # Max 5x Hebel
   
 # Analyse-Intervalle
 intervals:
-  analysis: 15                  # Minuten zwischen Analysen
+  analysis: 15                 # Minuten zwischen Analysen
   report_daily: "18:00"        # Uhrzeit für Tagesreport
-  
-# Strategie-Einstellungen
-strategies:
-  momentum:
-    enabled: true
-    lookback: 20
-    rsi_period: 14
-    rsi_overbought: 70
-    rsi_oversold: 30
-    
-  breakout:
-    enabled: true
-    volume_threshold: 1.5
-    lookback_periods: 20
-    
-  mean_reversion:
-    enabled: true
-    bb_period: 20
-    bb_std: 2
-    
-# Daten-Einstellungen
-data:
-  history_days: 60             # Tage historische Daten
-  timeframe: "15m"             # 15-Minuten Charts
   
 # Reporting
 reporting:
   telegram_enabled: true
-  telegram_chat_id: 647601841  # Deine Telegram ID
+  telegram_chat_id: 647601841
   save_charts: true
-  detail_level: "high"         # low/medium/high
+  detail_level: "high"
