@@ -1,0 +1,125 @@
+======================================================================
+🚀 TradeForge ML Pre-Training
+======================================================================
+
+Startzeit: 2026-02-13 23:02:57
+Anzahl der Aktien: 53
+Zeitraum: 1 Jahr historische Daten
+
+📥 Lade historische Daten...
+   [ 1/53] AAPL... ✅ (251 Tage)
+   [ 2/53] MSFT... ✅ (251 Tage)
+   [ 3/53] NVDA... ✅ (251 Tage)
+   [ 4/53] AMD... ✅ (251 Tage)
+   [ 5/53] AMZN... ✅ (251 Tage)
+   [ 6/53] GOOGL... ✅ (251 Tage)
+   [ 7/53] META... ✅ (251 Tage)
+   [ 8/53] NFLX... ✅ (251 Tage)
+   [ 9/53] TSLA... ✅ (251 Tage)
+   [10/53] CRM... ✅ (251 Tage)
+   [11/53] AVGO... ✅ (251 Tage)
+   [12/53] QCOM... ✅ (251 Tage)
+   [13/53] INTC... ✅ (251 Tage)
+   [14/53] MU... ✅ (251 Tage)
+   [15/53] LRCX... ✅ (251 Tage)
+   [16/53] KLAC... ✅ (251 Tage)
+   [17/53] JPM... ✅ (251 Tage)
+   [18/53] BAC... ✅ (251 Tage)
+   [19/53] GS... ✅ (251 Tage)
+   [20/53] MS... ✅ (251 Tage)
+   [21/53] WFC... ✅ (251 Tage)
+   [22/53] C... ✅ (251 Tage)
+   [23/53] V... ✅ (251 Tage)
+   [24/53] MA... ✅ (251 Tage)
+   [25/53] JNJ... ✅ (251 Tage)
+   [26/53] PFE... ✅ (251 Tage)
+   [27/53] UNH... ✅ (251 Tage)
+   [28/53] ABBV... ✅ (251 Tage)
+   [29/53] LLY... ✅ (251 Tage)
+   [30/53] MRK... ✅ (251 Tage)
+   [31/53] BMY... ✅ (251 Tage)
+   [32/53] XOM... ✅ (251 Tage)
+   [33/53] CVX... ✅ (251 Tage)
+   [34/53] COP... ✅ (251 Tage)
+   [35/53] SLB... ✅ (251 Tage)
+   [36/53] BA... ✅ (251 Tage)
+   [37/53] CAT... ✅ (251 Tage)
+   [38/53] GE... ✅ (251 Tage)
+   [39/53] HON... ✅ (251 Tage)
+   [40/53] UPS... ✅ (251 Tage)
+   [41/53] WMT... ✅ (251 Tage)
+   [42/53] HD... ✅ (251 Tage)
+   [43/53] COST... ✅ (251 Tage)
+   [44/53] NKE... ✅ (251 Tage)
+   [45/53] SBUX... ✅ (251 Tage)
+   [46/53] MCD... ✅ (251 Tage)
+   [47/53] SPY... ✅ (251 Tage)
+   [48/53] QQQ... ✅ (251 Tage)
+   [49/53] IWM... ✅ (251 Tage)
+   [50/53] XLK... ✅ (251 Tage)
+   [51/53] XLF... ✅ (251 Tage)
+   [52/53] XLE... ✅ (251 Tage)
+   [53/53] XLI... ✅ (251 Tage)
+
+✅ Erfolgreich geladen: 53/53 Aktien
+
+======================================================================
+📊 Generierte Trainingsdaten
+======================================================================
+  Erfolgreiche Setups (+2%+):  10566
+  Fehlgeschlagene Setups (-1%+): 1900
+  Neutrale Setups:             11316
+  Total:                        23782
+
+======================================================================
+🎓 Training der ML-Modelle
+======================================================================
+
+🔧 Bereite Trainingsdaten vor...
+  Erfolgreiche Setups: 10566
+  Fehlgeschlagene Setups: 1900
+  Neutrale Setups: 11316
+  Balanceierte Trainingsdaten: 3800 (je 1900)
+📝 Scaler wird trainiert...
+🤖 Training Classifier...
+
+📊 Classifier Ergebnisse:
+   Accuracy:  0.870
+   Precision: 0.870
+   Recall:    0.870
+   F1-Score:  0.870
+
+📈 Training Regressor...
+
+📊 Regressor Ergebnisse:
+   MSE: 0.001960
+   MAE: 0.036076
+
+🔍 Feature Importance (Top 10):
+   rsi: 0.062
+   vwap_distance: 0.056
+   macd_hist: 0.055
+   bb_position: 0.052
+   macd_signal: 0.051
+   volume_ratio: 0.051
+   adx: 0.051
+   momentum_20: 0.050
+   atr_percent: 0.048
+   macd: 0.047
+
+💾 Modell gespeichert unter: models/pretrained_model.pkl
+
+======================================================================
+🧪 Test-Vorhersage
+======================================================================
+
+Test-Features (RSI=30, VWAP=-1.5%):
+{'success_probability': np.float64(0.531), 'expected_return': np.float64(0.0312), 'prediction': 'success', 'confidence': 'medium'}
+
+======================================================================
+✅ ML Pre-Training abgeschlossen!
+======================================================================
+
+Das Modell ist bereit für TradeForge!
+Pfad: models/pretrained_model.pkl
+Endzeit: 2026-02-13 23:03:18

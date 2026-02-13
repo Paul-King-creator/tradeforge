@@ -1,0 +1,1074 @@
+{
+  "generated_at": "2026-02-13T22:59:51.325703",
+  "analysis_period_days": 60,
+  "total_stocks_analyzed": 50,
+  "stock_analysis": [
+    {
+      "symbol": "AAPL",
+      "current_price": 255.78,
+      "avg_volume": 48699949,
+      "recent_volume_ratio": 1.23,
+      "avg_daily_volatility_pct": 1.96,
+      "avg_daily_range_pct": 2.03,
+      "atr_14": 5.01,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.449,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 54.4,
+      "30d_return_pct": -5.83,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "MSFT",
+      "current_price": 401.32,
+      "avg_volume": 31244896,
+      "recent_volume_ratio": 1.52,
+      "avg_daily_volatility_pct": 2.51,
+      "avg_daily_range_pct": 2.29,
+      "atr_14": 10.07,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.305,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 66.5,
+      "30d_return_pct": -17.02,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "NVDA",
+      "current_price": 182.81,
+      "avg_volume": 179980086,
+      "recent_volume_ratio": 1.02,
+      "avg_daily_volatility_pct": 2.97,
+      "avg_daily_range_pct": 2.91,
+      "atr_14": 5.43,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.613,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 64.7,
+      "30d_return_pct": -1.98,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "AMD",
+      "current_price": 207.32,
+      "avg_volume": 37307081,
+      "recent_volume_ratio": 1.26,
+      "avg_daily_volatility_pct": 4.95,
+      "avg_daily_range_pct": 4.73,
+      "atr_14": 10.25,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.507,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 88.8,
+      "30d_return_pct": -3.19,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "AMZN",
+      "current_price": 198.79,
+      "avg_volume": 46987321,
+      "recent_volume_ratio": 1.7,
+      "avg_daily_volatility_pct": 2.75,
+      "avg_daily_range_pct": 2.69,
+      "atr_14": 5.46,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.486,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 70.9,
+      "30d_return_pct": -13.88,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "GOOGL",
+      "current_price": 305.72,
+      "avg_volume": 38310377,
+      "recent_volume_ratio": 1.29,
+      "avg_daily_volatility_pct": 2.68,
+      "avg_daily_range_pct": 2.78,
+      "atr_14": 8.18,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.508,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 66.5,
+      "30d_return_pct": -2.33,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "META",
+      "current_price": 639.77,
+      "avg_volume": 16899952,
+      "recent_volume_ratio": 0.87,
+      "avg_daily_volatility_pct": 2.88,
+      "avg_daily_range_pct": 2.6,
+      "atr_14": 18.41,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.357,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 59.2,
+      "30d_return_pct": -3.08,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "NFLX",
+      "current_price": 76.87,
+      "avg_volume": 47368603,
+      "recent_volume_ratio": 1.01,
+      "avg_daily_volatility_pct": 3.31,
+      "avg_daily_range_pct": 3.35,
+      "atr_14": 2.54,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.145,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 70.0,
+      "30d_return_pct": -18.01,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "TSLA",
+      "current_price": 417.44,
+      "avg_volume": 69356184,
+      "recent_volume_ratio": 0.89,
+      "avg_daily_volatility_pct": 3.76,
+      "avg_daily_range_pct": 3.51,
+      "atr_14": 15.69,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.499,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 72.9,
+      "30d_return_pct": -7.18,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "CRM",
+      "current_price": 189.72,
+      "avg_volume": 9946838,
+      "recent_volume_ratio": 1.61,
+      "avg_daily_volatility_pct": 3.73,
+      "avg_daily_range_pct": 3.66,
+      "atr_14": 7.07,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.326,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 85.6,
+      "30d_return_pct": -28.38,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "AVGO",
+      "current_price": 325.17,
+      "avg_volume": 31733532,
+      "recent_volume_ratio": 0.88,
+      "avg_daily_volatility_pct": 4.46,
+      "avg_daily_range_pct": 4.27,
+      "atr_14": 14.51,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.658,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 79.0,
+      "30d_return_pct": -6.05,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "QCOM",
+      "current_price": 140.7,
+      "avg_volume": 9421022,
+      "recent_volume_ratio": 1.48,
+      "avg_daily_volatility_pct": 3.06,
+      "avg_daily_range_pct": 2.86,
+      "atr_14": 4.3,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.599,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 74.6,
+      "30d_return_pct": -17.74,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "INTC",
+      "current_price": 46.79,
+      "avg_volume": 104379815,
+      "recent_volume_ratio": 1.0,
+      "avg_daily_volatility_pct": 5.5,
+      "avg_daily_range_pct": 4.86,
+      "atr_14": 2.57,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.306,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 84.3,
+      "30d_return_pct": 26.8,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "MU",
+      "current_price": 411.66,
+      "avg_volume": 32871472,
+      "recent_volume_ratio": 1.24,
+      "avg_daily_volatility_pct": 4.57,
+      "avg_daily_range_pct": 4.3,
+      "atr_14": 18.81,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.495,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 86.4,
+      "30d_return_pct": 44.23,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "LRCX",
+      "current_price": 235.53,
+      "avg_volume": 11995735,
+      "recent_volume_ratio": 0.99,
+      "avg_daily_volatility_pct": 3.96,
+      "avg_daily_range_pct": 3.57,
+      "atr_14": 9.33,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.617,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 77.4,
+      "30d_return_pct": 37.59,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "KLAC",
+      "current_price": 1464.13,
+      "avg_volume": 1090586,
+      "recent_volume_ratio": 1.26,
+      "avg_daily_volatility_pct": 3.78,
+      "avg_daily_range_pct": 3.28,
+      "atr_14": 55.37,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.593,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 79.4,
+      "30d_return_pct": 20.5,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "JPM",
+      "current_price": 302.55,
+      "avg_volume": 10497613,
+      "recent_volume_ratio": 1.05,
+      "avg_daily_volatility_pct": 2.18,
+      "avg_daily_range_pct": 2.21,
+      "atr_14": 6.6,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.53,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 53.8,
+      "30d_return_pct": -5.68,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "BAC",
+      "current_price": 52.55,
+      "avg_volume": 38299654,
+      "recent_volume_ratio": 1.09,
+      "avg_daily_volatility_pct": 1.96,
+      "avg_daily_range_pct": 1.98,
+      "atr_14": 1.03,
+      "best_trading_hours": [
+        "9:00",
+        "11:00",
+        "13:00"
+      ],
+      "correlation_with_spy": 0.536,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 51.3,
+      "30d_return_pct": -4.45,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "GS",
+      "current_price": 905.14,
+      "avg_volume": 2292402,
+      "recent_volume_ratio": 1.18,
+      "avg_daily_volatility_pct": 2.55,
+      "avg_daily_range_pct": 2.62,
+      "atr_14": 23.07,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.692,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 62.2,
+      "30d_return_pct": 2.97,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "MS",
+      "current_price": 171.15,
+      "avg_volume": 6569940,
+      "recent_volume_ratio": 1.4,
+      "avg_daily_volatility_pct": 2.34,
+      "avg_daily_range_pct": 2.51,
+      "atr_14": 4.01,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.713,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 63.9,
+      "30d_return_pct": -3.06,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "WFC",
+      "current_price": 86.98,
+      "avg_volume": 14966094,
+      "recent_volume_ratio": 1.04,
+      "avg_daily_volatility_pct": 2.32,
+      "avg_daily_range_pct": 2.39,
+      "atr_14": 2.02,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.539,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 55.9,
+      "30d_return_pct": -6.22,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "C",
+      "current_price": 110.86,
+      "avg_volume": 13974800,
+      "recent_volume_ratio": 1.05,
+      "avg_daily_volatility_pct": 2.61,
+      "avg_daily_range_pct": 2.65,
+      "atr_14": 2.89,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.678,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 60.3,
+      "30d_return_pct": -4.5,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "V",
+      "current_price": 314.08,
+      "avg_volume": 7498823,
+      "recent_volume_ratio": 1.12,
+      "avg_daily_volatility_pct": 1.99,
+      "avg_daily_range_pct": 1.94,
+      "atr_14": 6.24,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.29,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 52.0,
+      "30d_return_pct": -10.26,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "MA",
+      "current_price": 518.36,
+      "avg_volume": 3502403,
+      "recent_volume_ratio": 1.16,
+      "avg_daily_volatility_pct": 2.08,
+      "avg_daily_range_pct": 2.02,
+      "atr_14": 10.81,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.23,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 54.2,
+      "30d_return_pct": -9.06,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "JNJ",
+      "current_price": 243.45,
+      "avg_volume": 9108885,
+      "recent_volume_ratio": 0.99,
+      "avg_daily_volatility_pct": 1.52,
+      "avg_daily_range_pct": 1.43,
+      "atr_14": 3.69,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": -0.042,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 42.2,
+      "30d_return_pct": 17.64,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "PFE",
+      "current_price": 27.58,
+      "avg_volume": 50358095,
+      "recent_volume_ratio": 1.15,
+      "avg_daily_volatility_pct": 1.92,
+      "avg_daily_range_pct": 1.91,
+      "atr_14": 0.53,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.435,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 51.8,
+      "30d_return_pct": 12.62,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "UNH",
+      "current_price": 293.19,
+      "avg_volume": 8778744,
+      "recent_volume_ratio": 1.14,
+      "avg_daily_volatility_pct": 3.33,
+      "avg_daily_range_pct": 2.88,
+      "atr_14": 9.77,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.078,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 70.6,
+      "30d_return_pct": -11.18,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "ABBV",
+      "current_price": 231.5,
+      "avg_volume": 6562839,
+      "recent_volume_ratio": 1.27,
+      "avg_daily_volatility_pct": 2.26,
+      "avg_daily_range_pct": 2.29,
+      "atr_14": 5.24,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.043,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 59.6,
+      "30d_return_pct": 2.13,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "LLY",
+      "current_price": 1040.0,
+      "avg_volume": 3301955,
+      "recent_volume_ratio": 1.31,
+      "avg_daily_volatility_pct": 3.08,
+      "avg_daily_range_pct": 2.94,
+      "atr_14": 32.0,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.19,
+      "recommended_strategy": "Breakout",
+      "day_trading_score": 71.6,
+      "30d_return_pct": -3.23,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "MRK",
+      "current_price": 121.41,
+      "avg_volume": 14575870,
+      "recent_volume_ratio": 1.13,
+      "avg_daily_volatility_pct": 2.15,
+      "avg_daily_range_pct": 2.23,
+      "atr_14": 2.61,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.186,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 55.3,
+      "30d_return_pct": 15.34,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "BMY",
+      "current_price": 60.74,
+      "avg_volume": 14586429,
+      "recent_volume_ratio": 1.0,
+      "avg_daily_volatility_pct": 2.02,
+      "avg_daily_range_pct": 1.89,
+      "atr_14": 1.23,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.2,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 49.7,
+      "30d_return_pct": 13.94,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "XOM",
+      "current_price": 148.45,
+      "avg_volume": 18390986,
+      "recent_volume_ratio": 1.31,
+      "avg_daily_volatility_pct": 1.74,
+      "avg_daily_range_pct": 1.64,
+      "atr_14": 2.58,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.04,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 51.8,
+      "30d_return_pct": 24.18,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "CVX",
+      "current_price": 183.74,
+      "avg_volume": 10552519,
+      "recent_volume_ratio": 1.1,
+      "avg_daily_volatility_pct": 1.64,
+      "avg_daily_range_pct": 1.49,
+      "atr_14": 3.01,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.08,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 45.8,
+      "30d_return_pct": 20.56,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "COP",
+      "current_price": 111.43,
+      "avg_volume": 7890731,
+      "recent_volume_ratio": 1.05,
+      "avg_daily_volatility_pct": 2.44,
+      "avg_daily_range_pct": 2.21,
+      "atr_14": 2.71,
+      "best_trading_hours": [
+        "9:00",
+        "11:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.083,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 56.5,
+      "30d_return_pct": 19.04,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "SLB",
+      "current_price": 50.39,
+      "avg_volume": 18272103,
+      "recent_volume_ratio": 1.11,
+      "avg_daily_volatility_pct": 2.62,
+      "avg_daily_range_pct": 2.42,
+      "atr_14": 1.32,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.299,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 60.5,
+      "30d_return_pct": 32.07,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "BA",
+      "current_price": 242.96,
+      "avg_volume": 8379500,
+      "recent_volume_ratio": 0.77,
+      "avg_daily_volatility_pct": 2.4,
+      "avg_daily_range_pct": 2.34,
+      "atr_14": 5.84,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.191,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 51.1,
+      "30d_return_pct": 11.9,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "CAT",
+      "current_price": 774.2,
+      "avg_volume": 2746592,
+      "recent_volume_ratio": 1.45,
+      "avg_daily_volatility_pct": 2.32,
+      "avg_daily_range_pct": 2.35,
+      "atr_14": 18.0,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.661,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 63.9,
+      "30d_return_pct": 35.46,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "GE",
+      "current_price": 315.41,
+      "avg_volume": 5284785,
+      "recent_volume_ratio": 0.99,
+      "avg_daily_volatility_pct": 2.64,
+      "avg_daily_range_pct": 2.53,
+      "atr_14": 8.33,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.407,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 58.9,
+      "30d_return_pct": 2.4,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "HON",
+      "current_price": 241.38,
+      "avg_volume": 4380109,
+      "recent_volume_ratio": 1.07,
+      "avg_daily_volatility_pct": 1.57,
+      "avg_daily_range_pct": 1.52,
+      "atr_14": 3.79,
+      "best_trading_hours": [
+        "9:00",
+        "11:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.278,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 44.7,
+      "30d_return_pct": 23.73,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "UPS",
+      "current_price": 119.24,
+      "avg_volume": 6209099,
+      "recent_volume_ratio": 1.19,
+      "avg_daily_volatility_pct": 1.92,
+      "avg_daily_range_pct": 1.93,
+      "atr_14": 2.29,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.244,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 52.7,
+      "30d_return_pct": 20.21,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "WMT",
+      "current_price": 133.89,
+      "avg_volume": 30839531,
+      "recent_volume_ratio": 0.9,
+      "avg_daily_volatility_pct": 1.76,
+      "avg_daily_range_pct": 1.85,
+      "atr_14": 2.36,
+      "best_trading_hours": [
+        "9:00",
+        "11:00",
+        "15:00"
+      ],
+      "correlation_with_spy": -0.146,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 44.8,
+      "30d_return_pct": 20.18,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "HD",
+      "current_price": 391.05,
+      "avg_volume": 4657052,
+      "recent_volume_ratio": 0.87,
+      "avg_daily_volatility_pct": 2.06,
+      "avg_daily_range_pct": 2.05,
+      "atr_14": 8.07,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.231,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 48.2,
+      "30d_return_pct": 13.64,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "COST",
+      "current_price": 1018.48,
+      "avg_volume": 2746023,
+      "recent_volume_ratio": 0.89,
+      "avg_daily_volatility_pct": 1.67,
+      "avg_daily_range_pct": 1.67,
+      "atr_14": 17.04,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.059,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 42.9,
+      "30d_return_pct": 18.27,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "NKE",
+      "current_price": 63.13,
+      "avg_volume": 17940964,
+      "recent_volume_ratio": 0.83,
+      "avg_daily_volatility_pct": 3.0,
+      "avg_daily_range_pct": 2.7,
+      "atr_14": 1.89,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.165,
+      "recommended_strategy": "Momentum",
+      "day_trading_score": 60.1,
+      "30d_return_pct": -0.91,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "SBUX",
+      "current_price": 93.79,
+      "avg_volume": 9659249,
+      "recent_volume_ratio": 0.85,
+      "avg_daily_volatility_pct": 2.62,
+      "avg_daily_range_pct": 2.58,
+      "atr_14": 2.46,
+      "best_trading_hours": [
+        "9:00",
+        "11:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.305,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 56.1,
+      "30d_return_pct": 11.38,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "MCD",
+      "current_price": 327.58,
+      "avg_volume": 3323875,
+      "recent_volume_ratio": 1.17,
+      "avg_daily_volatility_pct": 1.41,
+      "avg_daily_range_pct": 1.42,
+      "atr_14": 4.62,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": -0.015,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 44.7,
+      "30d_return_pct": 7.18,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "SPY",
+      "current_price": 681.75,
+      "avg_volume": 82549815,
+      "recent_volume_ratio": 1.11,
+      "avg_daily_volatility_pct": 0.94,
+      "avg_daily_range_pct": 0.97,
+      "atr_14": 6.42,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": null,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 36.5,
+      "30d_return_pct": -0.02,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "QQQ",
+      "current_price": 601.92,
+      "avg_volume": 56792053,
+      "recent_volume_ratio": 1.23,
+      "avg_daily_volatility_pct": 1.4,
+      "avg_daily_range_pct": 1.41,
+      "atr_14": 8.43,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "15:00"
+      ],
+      "correlation_with_spy": 0.934,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 45.6,
+      "30d_return_pct": -2.02,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "IWM",
+      "current_price": 262.96,
+      "avg_volume": 40461696,
+      "recent_volume_ratio": 1.05,
+      "avg_daily_volatility_pct": 1.5,
+      "avg_daily_range_pct": 1.57,
+      "atr_14": 3.94,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.805,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 43.9,
+      "30d_return_pct": 6.82,
+      "data_quality": "good"
+    },
+    {
+      "symbol": "XLK",
+      "current_price": 139.56,
+      "avg_volume": 18111308,
+      "recent_volume_ratio": 1.64,
+      "avg_daily_volatility_pct": 1.85,
+      "avg_daily_range_pct": 1.85,
+      "atr_14": 2.58,
+      "best_trading_hours": [
+        "9:00",
+        "10:00",
+        "11:00"
+      ],
+      "correlation_with_spy": 0.875,
+      "recommended_strategy": "Mean Reversion",
+      "day_trading_score": 57.7,
+      "30d_return_pct": -3.06,
+      "data_quality": "good"
+    }
+  ],
+  "rankings": {
+    "top_10_day_trading_stocks": [
+      {
+        "rank": 1,
+        "symbol": "AMD",
+        "day_trading_score": 88.8,
+        "volatility_pct": 4.95,
+        "avg_volume": 37307081,
+        "strategy": "Breakout"
+      },
+      {
+        "rank": 2,
+        "symbol": "MU",
+        "day_trading_score": 86.4,
+        "volatility_pct": 4.57,
+        "avg_volume": 32871472,
+        "strategy": "Breakout"
+      },
+      {
+        "rank": 3,
+        "symbol": "CRM",
+        "day_trading_score": 85.6,
+        "volatility_pct": 3.73,
+        "avg_volume": 9946838,
+        "strategy": "Breakout"
+      },
+      {
+        "rank": 4,
+        "symbol": "INTC",
+        "day_trading_score": 84.3,
+        "volatility_pct": 5.5,
+        "avg_volume": 104379815,
+        "strategy": "Momentum"
+      },
+      {
+        "rank": 5,
+        "symbol": "KLAC",
+        "day_trading_score": 79.4,
+        "volatility_pct": 3.78,
+        "avg_volume": 1090586,
+        "strategy": "Breakout"
+      },
+      {
+        "rank": 6,
+        "symbol": "AVGO",
+        "day_trading_score": 79.0,
+        "volatility_pct": 4.46,
+        "avg_volume": 31733532,
+        "strategy": "Momentum"
+      },
+      {
+        "rank": 7,
+        "symbol": "LRCX",
+        "day_trading_score": 77.4,
+        "volatility_pct": 3.96,
+        "avg_volume": 11995735,
+        "strategy": "Momentum"
+      },
+      {
+        "rank": 8,
+        "symbol": "QCOM",
+        "day_trading_score": 74.6,
+        "volatility_pct": 3.06,
+        "avg_volume": 9421022,
+        "strategy": "Breakout"
+      },
+      {
+        "rank": 9,
+        "symbol": "TSLA",
+        "day_trading_score": 72.9,
+        "volatility_pct": 3.76,
+        "avg_volume": 69356184,
+        "strategy": "Momentum"
+      },
+      {
+        "rank": 10,
+        "symbol": "LLY",
+        "day_trading_score": 71.6,
+        "volatility_pct": 3.08,
+        "avg_volume": 3301955,
+        "strategy": "Breakout"
+      }
+    ],
+    "most_volatile": [
+      "INTC",
+      "AMD",
+      "MU",
+      "AVGO",
+      "LRCX",
+      "KLAC",
+      "TSLA",
+      "CRM",
+      "UNH",
+      "NFLX"
+    ],
+    "highest_volume": [
+      "NVDA",
+      "INTC",
+      "SPY",
+      "TSLA",
+      "QQQ",
+      "PFE",
+      "AAPL",
+      "NFLX",
+      "AMZN",
+      "IWM"
+    ]
+  },
+  "summary": {
+    "avg_volatility_all": 2.57,
+    "avg_volume_all": 25433119,
+    "best_strategy_distribution": {
+      "Mean Reversion": 30,
+      "Momentum": 12,
+      "Breakout": 8
+    }
+  }
+}
