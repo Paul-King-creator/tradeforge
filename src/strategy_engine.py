@@ -123,12 +123,24 @@ class StrategyEngine:
         
         return None
     
-    def _breakout_strategy(self, ticker: str, df: pd.DataFrame) -> Optional[Signal]:
-        """Breakout Strategie"""
+    def _breakout_strategy(self, ticker: str, df: pd.DataFrame, advanced_data=None) -> Optional[Signal]:
+        """Breakout Strategie mit Volume Profile"""
         last = df.iloc[-1]
         high_20 = df['High'].tail(20).max()
         
-        if last['Close'] > high_20 * 0.995 and last['Volume_Ratio'] > 1.5:
+        # Basis Breakout Bedingung
+        breakout_condition = (
+            last['Close'] > high_20 * 0.995 and 
+            last['Volume_Ratio'] > 1.5
+        )
+        
+        # Erweiterte Filter
+        if advanced_data and breakout_condition:
+            # VWAP Filter: Bei Breakout sollten wir über VWAP sein
+            if not advanced_data['vwap']['above']:
+                breakout_condition = False
+        
+        if breakout_condition:
             stop_loss = last['Close'] - (last['ATR'] * 1.5)
             take_profit = last['Close'] + (last['ATR'] * 2.5)
             
@@ -147,11 +159,23 @@ class StrategyEngine:
         
         return None
     
-    def _mean_reversion_strategy(self, ticker: str, df: pd.DataFrame) -> Optional[Signal]:
-        """Mean Reversion Strategie"""
+    def _mean_reversion_strategy(self, ticker: str, df: pd.DataFrame, advanced_data=None) -> Optional[Signal]:
+        """Mean Reversion Strategie mit Support Levels"""
         last = df.iloc[-1]
         
-        if last['Close'] <= last['BB_Lower'] * 1.01 and last['RSI'] < 25:
+        # Basis Mean Reversion
+        reversion_condition = (
+            last['Close'] <= last['BB_Lower'] * 1.01 and 
+            last['RSI'] < 30
+        )
+        
+        # Erweiterte Filter
+        if advanced_data and reversion_condition:
+            # VWAP: Unter VWAP ist bärish für Mean Reversion Long
+            if advanced_data['vwap']['above']:
+                reversion_condition = False
+        
+        if reversion_condition:
             stop_loss = last['Close'] - (last['ATR'] * 2)
             take_profit = last['BB_Middle']
             

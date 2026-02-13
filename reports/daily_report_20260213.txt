@@ -2,7 +2,7 @@
 📊 TRADEFORGE TAGESREPORT - 2026-02-13
 ============================================================
 
-⏰ Report generiert: 21:39:24 UTC
+⏰ Report generiert: 22:19:46 UTC
 
 📈 PERFORMANCE HISTE
 ----------------------------------------
@@ -17,6 +17,66 @@ Durchschnittl. P&L: 0.00%
 
 🎯 OFFENE POSITIONEN
 ----------------------------------------
+
+AAPL (mean_reversion_long):
+  Einstieg: $255.82
+  Stop: $254.18 | Target: $258.50
+  Hebel: 2x | Konfidenz: 60%
+
+AMZN (mean_reversion_long):
+  Einstieg: $198.77
+  Stop: $197.37 | Target: $199.69
+  Hebel: 2x | Konfidenz: 60%
+
+META (mean_reversion_long):
+  Einstieg: $639.76
+  Stop: $635.14 | Target: $646.99
+  Hebel: 2x | Konfidenz: 60%
+
+AVGO (mean_reversion_long):
+  Einstieg: $325.11
+  Stop: $321.95 | Target: $327.95
+  Hebel: 2x | Konfidenz: 60%
+
+AAPL (mean_reversion_long):
+  Einstieg: $255.82
+  Stop: $254.18 | Target: $258.50
+  Hebel: 2x | Konfidenz: 60%
+
+AMZN (mean_reversion_long):
+  Einstieg: $198.77
+  Stop: $197.37 | Target: $199.69
+  Hebel: 2x | Konfidenz: 60%
+
+META (mean_reversion_long):
+  Einstieg: $639.76
+  Stop: $635.14 | Target: $646.99
+  Hebel: 2x | Konfidenz: 60%
+
+AVGO (mean_reversion_long):
+  Einstieg: $325.11
+  Stop: $321.95 | Target: $327.95
+  Hebel: 2x | Konfidenz: 60%
+
+AAPL (mean_reversion_long):
+  Einstieg: $255.82
+  Stop: $254.18 | Target: $258.50
+  Hebel: 2x | Konfidenz: 60%
+
+AMZN (mean_reversion_long):
+  Einstieg: $198.77
+  Stop: $197.37 | Target: $199.69
+  Hebel: 2x | Konfidenz: 60%
+
+META (mean_reversion_long):
+  Einstieg: $639.76
+  Stop: $635.14 | Target: $646.99
+  Hebel: 2x | Konfidenz: 60%
+
+AVGO (mean_reversion_long):
+  Einstieg: $325.11
+  Stop: $321.95 | Target: $327.95
+  Hebel: 2x | Konfidenz: 60%
 
 AAPL (mean_reversion_long):
   Einstieg: $255.82
