@@ -2,7 +2,7 @@
 📊 TRADEFORGE TAGESREPORT - 2026-02-13
 ============================================================
 
-⏰ Report generiert: 19:29:11 UTC
+⏰ Report generiert: 20:20:06 UTC
 
 📈 PERFORMANCE HISTE
 ----------------------------------------
@@ -17,7 +17,11 @@ Durchschnittl. P&L: 0.00%
 
 🎯 OFFENE POSITIONEN
 ----------------------------------------
-Keine offenen Positionen
+
+AMZN (mean_reversion_long):
+  Einstieg: $198.73
+  Stop: $197.33 | Target: $199.68
+  Hebel: 2x | Konfidenz: 60%
 
 🔔 NEUE SIGNALE HEUTE
 ----------------------------------------

@@ -70,21 +70,26 @@ def get_positions():
            FROM trades WHERE status = 'open' ORDER BY entry_time DESC"""
     ).fetchall()
     
-    # Aktuelle Preise holen (Mock für jetzt, später echt)
+    # Aktuelle Preise holen (Live von yfinance)
+    import yfinance as yf
     result = []
     for pos in positions:
         pos_dict = dict(pos)
-        # Simulierter aktueller Preis (±2% vom Einstieg)
-        import random
-        variation = random.uniform(-0.02, 0.02)
-        current = pos_dict['entry'] * (1 + variation)
-        pos_dict['current'] = round(current, 2)
+        try:
+            # Echten aktuellen Preis holen
+            stock = yf.Ticker(pos_dict['ticker'])
+            info = stock.info
+            current = info.get('regularMarketPrice', pos_dict['entry'])
+            pos_dict['current'] = round(current, 2)
+        except:
+            # Fallback auf Entry-Preis wenn API nicht erreichbar
+            pos_dict['current'] = pos_dict['entry']
         
         # P&L berechnen
         if pos_dict['type'] == 'buy':
-            pnl = ((current - pos_dict['entry']) / pos_dict['entry']) * pos_dict['leverage'] * 100
+            pnl = ((pos_dict['current'] - pos_dict['entry']) / pos_dict['entry']) * pos_dict['leverage'] * 100
         else:
-            pnl = ((pos_dict['entry'] - current) / pos_dict['entry']) * pos_dict['leverage'] * 100
+            pnl = ((pos_dict['entry'] - pos_dict['current']) / pos_dict['entry']) * pos_dict['leverage'] * 100
         pos_dict['pnl'] = round(pnl, 2)
         
         result.append(pos_dict)
@@ -112,17 +117,38 @@ def get_today_trades():
 
 @app.route('/api/watchlist', methods=['GET'])
 def get_watchlist():
-    """Watchlist mit aktuellen Preisen"""
-    watchlist = [
-        {"ticker": "NVDA", "price": 892.40, "change": 2.15},
-        {"ticker": "AAPL", "price": 187.85, "change": 0.89},
-        {"ticker": "MSFT", "price": 422.10, "change": 0.45},
-        {"ticker": "AMZN", "price": 180.50, "change": 1.25},
-        {"ticker": "GOOGL", "price": 175.20, "change": -0.35},
-        {"ticker": "META", "price": 498.50, "change": 1.92},
-        {"ticker": "TSLA", "price": 172.30, "change": -3.45},
-        {"ticker": "AVGO", "price": 1385.20, "change": 0.78},
-    ]
+    """Watchlist mit aktuellen Preisen von yfinance"""
+    import yfinance as yf
+    
+    tickers = ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'GOOGL', 'META', 'TSLA', 'BRK-B', 'AVGO', 'JPM']
+    watchlist = []
+    
+    for ticker in tickers:
+        try:
+            stock = yf.Ticker(ticker)
+            info = stock.info
+            
+            current_price = info.get('regularMarketPrice', 0)
+            previous_close = info.get('regularMarketPreviousClose', 0)
+            
+            if current_price and previous_close:
+                change_pct = ((current_price - previous_close) / previous_close) * 100
+            else:
+                change_pct = 0
+            
+            watchlist.append({
+                "ticker": ticker,
+                "price": round(current_price, 2),
+                "change": round(change_pct, 2)
+            })
+        except Exception as e:
+            # Fallback wenn Daten nicht verfügbar
+            watchlist.append({
+                "ticker": ticker,
+                "price": 0,
+                "change": 0
+            })
+    
     return jsonify(watchlist)
 
 @app.route('/api/strategies', methods=['GET'])
@@ -153,21 +179,62 @@ def get_strategy_stats():
 
 @app.route('/api/performance', methods=['GET'])
 def get_performance():
-    """Portfolio Performance über Zeit"""
-    # Dies würde normalerweise aus der DB kommen
-    # Für jetzt: Mock-Daten basierend auf Trades
-    data = [
-        {"time": "09:30", "value": 10000},
-        {"time": "10:00", "value": 10120},
-        {"time": "10:30", "value": 10050},
-        {"time": "11:00", "value": 10230},
-        {"time": "11:30", "value": 10410},
-        {"time": "12:00", "value": 10520},
-        {"time": "12:30", "value": 10680},
-        {"time": "13:00", "value": 10750},
-        {"time": "13:30", "value": 10847},
-    ]
+    """Portfolio Performance über Zeit - aus DB generiert"""
+    conn = get_db_connection()
+    
+    # Alle geschlossenen Trades nach Zeit sortiert
+    trades = conn.execute(
+        """SELECT exit_time, pnl_percent 
+           FROM trades 
+           WHERE status = 'closed' 
+           ORDER BY exit_time ASC"""
+    ).fetchall()
+    
+    conn.close()
+    
+    if not trades:
+        # Keine Trades = flache Linie bei Startkapital
+        return jsonify([{"time": "Start", "value": 10000}])
+    
+    # Performance-Kurve berechnen
+    initial_capital = 10000
+    data = []
+    current_value = initial_capital
+    
+    for i, trade in enumerate(trades):
+        pnl_decimal = (trade['pnl_percent'] or 0) / 100
+        current_value = current_value * (1 + pnl_decimal)
+        
+        # Zeit formatieren
+        exit_time = trade['exit_time']
+        if exit_time:
+            time_str = exit_time.split(' ')[1][:5] if ' ' in str(exit_time) else str(i)
+        else:
+            time_str = str(i)
+        
+        data.append({
+            "time": time_str,
+            "value": round(current_value, 2)
+        })
+    
     return jsonify(data)
+
+@app.route('/api/learning', methods=['GET'])
+def get_learning_status():
+    """Adaptive Learning Status"""
+    import sys
+    sys.path.insert(0, 'src')
+    from adaptive_optimizer import AdaptiveOptimizer
+    
+    optimizer = AdaptiveOptimizer()
+    adjustments = optimizer.get_strategy_adjustments()
+    
+    return jsonify({
+        "scores": adjustments['strategy_scores'],
+        "recommendations": adjustments['recommendations'],
+        "parameter_updates": adjustments['parameter_updates'],
+        "timestamp": adjustments['timestamp']
+    })
 
 @app.route('/api/status', methods=['GET'])
 def get_status():

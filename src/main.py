@@ -18,6 +18,7 @@ from strategy_engine import StrategyEngine
 from paper_trader import PaperTrader
 from reporter import Reporter
 from learning_engine import LearningEngine
+from adaptive_optimizer import AdaptiveOptimizer
 
 class TradeForge:
     def __init__(self, config_path: str = "config.yaml"):
@@ -32,6 +33,7 @@ class TradeForge:
         self.paper_trader = PaperTrader()
         self.reporter = Reporter()
         self.learning_engine = LearningEngine()
+        self.adaptive_optimizer = AdaptiveOptimizer()
         
         # Tracking
         self.todays_signals = []
@@ -137,6 +139,32 @@ class TradeForge:
         )
         
         self.reporter.print_console_report(report)
+        
+        # 🧠 ADAPTIVE LEARNING: Analyse und Optimierung
+        print(f"\n{'='*60}")
+        print("🧠 ADAPTIVE LEARNING ANALYSE")
+        print(f"{'='*60}\n")
+        
+        learning_report = self.adaptive_optimizer.generate_learning_report()
+        print(learning_report)
+        
+        # Strategie-Parameter automatisch anpassen (nach 20 Trades)
+        total_trades = sum(
+            stat['total_trades'] 
+            for stat in strategy_stats
+        )
+        
+        if total_trades >= 20:
+            print("\n⚙️  Optimiere Strategie-Parameter...")
+            new_config = self.adaptive_optimizer.apply_learning_to_config(self.config)
+            
+            # Wenn sich etwas geändert hat, speichern
+            if new_config != self.config:
+                import yaml
+                with open('config.yaml', 'w') as f:
+                    yaml.dump(new_config, f)
+                print("✅ Neue Parameter in config.yaml gespeichert!")
+                print("   (Wirksam nach Neustart des Agents)")
         
         # Signale speichern
         if self.todays_signals:
