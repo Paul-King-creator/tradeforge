@@ -2,7 +2,7 @@
 📊 TRADEFORGE TAGESREPORT - 2026-02-13
 ============================================================
 
-⏰ Report generiert: 20:20:06 UTC
+⏰ Report generiert: 20:45:35 UTC
 
 📈 PERFORMANCE HISTE
 ----------------------------------------
@@ -17,6 +17,36 @@ Durchschnittl. P&L: 0.00%
 
 🎯 OFFENE POSITIONEN
 ----------------------------------------
+
+AAPL (mean_reversion_long):
+  Einstieg: $255.52
+  Stop: $253.95 | Target: $258.66
+  Hebel: 2x | Konfidenz: 60%
+
+NVDA (mean_reversion_long):
+  Einstieg: $181.82
+  Stop: $180.33 | Target: $183.67
+  Hebel: 2x | Konfidenz: 60%
+
+AMZN (mean_reversion_long):
+  Einstieg: $197.99
+  Stop: $196.60 | Target: $199.68
+  Hebel: 2x | Konfidenz: 60%
+
+META (mean_reversion_long):
+  Einstieg: $640.56
+  Stop: $636.20 | Target: $647.35
+  Hebel: 2x | Konfidenz: 60%
+
+AVGO (mean_reversion_long):
+  Einstieg: $325.62
+  Stop: $322.50 | Target: $328.12
+  Hebel: 2x | Konfidenz: 60%
+
+AMZN (mean_reversion_long):
+  Einstieg: $198.73
+  Stop: $197.33 | Target: $199.68
+  Hebel: 2x | Konfidenz: 60%
 
 AMZN (mean_reversion_long):
   Einstieg: $198.73

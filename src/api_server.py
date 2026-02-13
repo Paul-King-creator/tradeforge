@@ -23,12 +23,13 @@ def get_db_connection():
 
 @app.route('/api/portfolio', methods=['GET'])
 def get_portfolio():
-    """Portfolio-Übersicht"""
+    """Portfolio-Übersicht mit Details"""
     conn = get_db_connection()
     
     # Offene Positionen
     open_positions = conn.execute(
-        "SELECT * FROM trades WHERE status = 'open'"
+        """SELECT *, (position_size * entry_price) as position_value
+           FROM trades WHERE status = 'open'"""
     ).fetchall()
     
     # Heutige geschlossene Trades
@@ -39,32 +40,67 @@ def get_portfolio():
         (today,)
     ).fetchall()
     
+    # Gesamtes Exposure (wie viel Kapital ist investiert)
+    total_exposure = sum(p['position_value'] or 0 for p in open_positions)
+    
+    # Gesamtes Risk (was wir verlieren wenn alle SLs hit)
+    total_risk = sum(
+        (abs(p['entry_price'] - p['stop_loss']) * p['position_size']) 
+        for p in open_positions
+    )
+    
     # Performance berechnen
     initial_capital = 10000
-    total_pnl = sum(t['pnl_percent'] or 0 for t in closed_today)
-    current_value = initial_capital * (1 + total_pnl / 100)
+    
+    # Realisierte P&L (geschlossene Trades)
+    realized_pnl = sum(t['pnl_percent'] or 0 for t in closed_today)
+    
+    # Performance aus DB holen (genauer)
+    cursor = conn.execute('''
+        SELECT SUM(pnl_percent) FROM trades WHERE status = 'closed'
+    ''')
+    total_realized_pnl = cursor.fetchone()[0] or 0
+    
+    current_value = initial_capital * (1 + total_realized_pnl / 100)
+    
+    # Mehr Stats
+    total_trades = conn.execute('SELECT COUNT(*) FROM trades').fetchone()[0]
+    winning_trades = conn.execute(
+        "SELECT COUNT(*) FROM trades WHERE status = 'closed' AND pnl_percent > 0"
+    ).fetchone()[0]
+    losing_trades = conn.execute(
+        "SELECT COUNT(*) FROM trades WHERE status = 'closed' AND pnl_percent <= 0"
+    ).fetchone()[0]
     
     conn.close()
     
     return jsonify({
         "totalValue": round(current_value, 2),
-        "dayChange": round(current_value - initial_capital, 2),
-        "dayChangePercent": round(total_pnl, 2),
-        "totalReturn": round(total_pnl, 2),
+        "dayChange": round(realized_pnl * initial_capital / 100, 2),
+        "dayChangePercent": round(realized_pnl, 2),
+        "totalReturn": round(total_realized_pnl, 2),
         "openPositions": len(open_positions),
         "closedToday": len(closed_today),
-        "initialCapital": initial_capital
+        "initialCapital": initial_capital,
+        "totalExposure": round(total_exposure, 2),
+        "totalRisk": round(total_risk, 2),
+        "exposurePercent": round((total_exposure / initial_capital) * 100, 1),
+        "riskPercent": round((total_risk / initial_capital) * 100, 2),
+        "totalTrades": total_trades,
+        "winningTrades": winning_trades,
+        "losingTrades": losing_trades,
+        "winRate": round((winning_trades / (winning_trades + losing_trades) * 100), 1) if (winning_trades + losing_trades) > 0 else 0
     })
 
 @app.route('/api/positions', methods=['GET'])
 def get_positions():
-    """Alle offenen Positionen"""
+    """Alle offenen Positionen mit Details"""
     conn = get_db_connection()
     
     positions = conn.execute(
         """SELECT id, ticker, signal_type as type, strategy, 
                   entry_price as entry, stop_loss as stopLoss, 
-                  take_profit as takeProfit, leverage, 
+                  take_profit as takeProfit, leverage, position_size as shares,
                   confidence, setup_description as setupDescription,
                   entry_time as time
            FROM trades WHERE status = 'open' ORDER BY entry_time DESC"""
@@ -75,6 +111,27 @@ def get_positions():
     result = []
     for pos in positions:
         pos_dict = dict(pos)
+        
+        # Position Value berechnen
+        position_value = pos_dict['shares'] * pos_dict['entry']
+        pos_dict['positionValue'] = round(position_value, 2)
+        
+        # Risk Amount (was wir bei SL verlieren würden)
+        risk_per_share = abs(pos_dict['entry'] - pos_dict['stopLoss'])
+        risk_amount = risk_per_share * pos_dict['shares']
+        pos_dict['riskAmount'] = round(risk_amount, 2)
+        
+        # Potential Profit (bei TP)
+        profit_per_share = abs(pos_dict['takeProfit'] - pos_dict['entry'])
+        potential_profit = profit_per_share * pos_dict['shares']
+        pos_dict['potentialProfit'] = round(potential_profit, 2)
+        
+        # Risk/Reward Ratio
+        if risk_per_share > 0:
+            pos_dict['riskRewardRatio'] = round(profit_per_share / risk_per_share, 2)
+        else:
+            pos_dict['riskRewardRatio'] = 0
+        
         try:
             # Echten aktuellen Preis holen
             stock = yf.Ticker(pos_dict['ticker'])
@@ -85,12 +142,20 @@ def get_positions():
             # Fallback auf Entry-Preis wenn API nicht erreichbar
             pos_dict['current'] = pos_dict['entry']
         
+        # Aktueller Positions-Wert
+        current_value = pos_dict['shares'] * pos_dict['current']
+        pos_dict['currentValue'] = round(current_value, 2)
+        
         # P&L berechnen
         if pos_dict['type'] == 'buy':
             pnl = ((pos_dict['current'] - pos_dict['entry']) / pos_dict['entry']) * pos_dict['leverage'] * 100
+            unrealized_pnl = (pos_dict['current'] - pos_dict['entry']) * pos_dict['shares']
         else:
             pnl = ((pos_dict['entry'] - pos_dict['current']) / pos_dict['entry']) * pos_dict['leverage'] * 100
+            unrealized_pnl = (pos_dict['entry'] - pos_dict['current']) * pos_dict['shares']
+        
         pos_dict['pnl'] = round(pnl, 2)
+        pos_dict['unrealizedPnl'] = round(unrealized_pnl, 2)
         
         result.append(pos_dict)
     
