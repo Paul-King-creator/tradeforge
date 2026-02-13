@@ -78,18 +78,40 @@ class PaperTrader:
         conn.close()
     
     def open_position(self, signal, capital: float = 10000, risk_per_trade: float = 0.02):
-        """Neue Position eröffnen"""
+        """Neue Position eröffnen mit korrekter Size-Berechnung"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         
-        # Position Size berechnen
-        risk_amount = capital * risk_per_trade
-        price_risk = abs(signal.entry_price - signal.stop_loss)
+        # Verfügbares Kapital berechnen (was ist noch nicht investiert?)
+        cursor.execute('''
+            SELECT COALESCE(SUM(position_size * entry_price), 0) 
+            FROM trades WHERE status = 'open'
+        ''')
+        invested = cursor.fetchone()[0] or 0
+        available = capital - invested
         
-        if price_risk > 0:
-            position_size = int(risk_amount / price_risk)
-        else:
-            position_size = 10  # Fallback
+        # Max Position Size: Max 10% des Kapitals pro Trade (oder $500 minimum)
+        max_position_value = min(capital * 0.10, available)
+        max_position_value = max(max_position_value, 0)  # Nicht negativ
+        
+        if max_position_value < 100:  # Mindestens $100 pro Position
+            conn.close()
+            return None  # Nicht genug Kapital
+        
+        # Shares berechnen
+        position_size = int(max_position_value / signal.entry_price)
+        
+        # Mindestens 1 Share
+        if position_size < 1:
+            position_size = 1
+        
+        # Max Position Value nicht überschreiten
+        actual_value = position_size * signal.entry_price
+        if actual_value > max_position_value:
+            position_size = int(max_position_value / signal.entry_price)
+        
+        print(f"   💰 Position Size: {position_size} shares = ${actual_value:.2f} "
+              f"(available: ${available:.2f})")
         
         cursor.execute('''
             INSERT INTO trades 

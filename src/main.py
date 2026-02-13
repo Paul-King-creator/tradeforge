@@ -20,6 +20,18 @@ from reporter import Reporter
 from learning_engine import LearningEngine
 from adaptive_optimizer import AdaptiveOptimizer
 
+# ML Optimizer (mit Fallback)
+try:
+    from ml_optimizer import MLStrategyOptimizer, ML_AVAILABLE
+    if ML_AVAILABLE:
+        print("🤖 ML-Optimizer geladen")
+    else:
+        print("⚠️  ML-Optimizer im Fallback-Modus (pip install scikit-learn)")
+except ImportError as e:
+    print(f"⚠️  ML-Optimizer nicht verfügbar: {e}")
+    ML_AVAILABLE = False
+    MLStrategyOptimizer = None
+
 class TradeForge:
     def __init__(self, config_path: str = "config.yaml"):
         # Konfiguration laden
@@ -34,6 +46,23 @@ class TradeForge:
         self.reporter = Reporter()
         self.learning_engine = LearningEngine()
         self.adaptive_optimizer = AdaptiveOptimizer()
+        
+        # ML Optimizer initialisieren
+        self.ml_optimizer = None
+        if ML_AVAILABLE and MLStrategyOptimizer:
+            self.ml_optimizer = MLStrategyOptimizer()
+            print("✅ ML-Based Optimizer initialisiert")
+            
+            # Versuche direkt zu trainieren (wenn genug Daten)
+            print("🎓 Starte initiales ML-Training...")
+            trained = self.ml_optimizer.train_models()
+            if trained:
+                print("   ✅ ML Models bereit!")
+                print(self.ml_optimizer.generate_ml_report())
+            else:
+                print("   ℹ️  Noch nicht genug Trades für ML-Training")
+        else:
+            print("⚠️  ML nicht verfügbar - verwende Regel-basiertes Trading")
         
         # Tracking
         self.todays_signals = []
@@ -83,13 +112,52 @@ class TradeForge:
             signals = self.strategy_engine.analyze_all_strategies(ticker, df)
             
             for signal in signals:
-                # Nur Signale mit hoher Konfidenz (>0.6) handeln
-                if signal.confidence >= 0.6:
+                # Erst ML-Vorhersage prüfen (wenn verfügbar)
+                ml_prediction = None
+                if self.ml_optimizer and hasattr(self.ml_optimizer, 'predict_trade_success'):
+                    from ml_optimizer import TradeFeatures
+                    
+                    features = TradeFeatures(
+                        ticker=signal.ticker,
+                        strategy=signal.strategy,
+                        entry_price=signal.entry_price,
+                        leverage=signal.leverage,
+                        confidence=signal.confidence
+                    )
+                    
+                    ml_prediction = self.ml_optimizer.predict_trade_success(features)
+                    
+                    print(f"\n   🤖 ML-Vorhersage für {ticker}:")
+                    print(f"      Erfolgswahrscheinlichkeit: {ml_prediction['success_probability']:.1%}")
+                    print(f"      Erwarteter Return: {ml_prediction['expected_return']:+.1f}%")
+                    print(f"      Model-Confidence: {ml_prediction['confidence']}")
+                
+                # Kombinierte Entscheidung: Strategie-Konfidenz + ML-Vorhersage
+                should_trade = signal.confidence >= 0.6
+                
+                if ml_prediction:
+                    # ML sagt Trade voraus - nutze das
+                    should_trade = should_trade and ml_prediction['should_trade']
+                    
+                    # Leverage basierend auf ML-Confidence anpassen
+                    if ml_prediction['success_probability'] > 0.70:
+                        signal.leverage = min(signal.leverage + 1, 5)
+                        print(f"      ⬆️  Leverage erhöht auf {signal.leverage}x (High Confidence)")
+                    elif ml_prediction['success_probability'] < 0.45:
+                        should_trade = False
+                        print(f"      ⛔ Trade abgelehnt (Low ML Confidence)")
+                        continue
+                
+                if should_trade:
                     trade_id = self.paper_trader.open_position(
                         signal,
                         capital=self.config['trading']['initial_capital'],
                         risk_per_trade=self.config['trading']['risk_per_trade']
                     )
+                    
+                    if trade_id is None:
+                        print(f"   ⚠️  {ticker} - Nicht genug Kapital")
+                        continue
                     
                     signal_data = {
                         'ticker': signal.ticker,
@@ -99,13 +167,15 @@ class TradeForge:
                         'confidence': signal.confidence,
                         'setup_description': signal.setup_description,
                         'timestamp': signal.timestamp.isoformat(),
-                        'trade_id': trade_id
+                        'trade_id': trade_id,
+                        'ml_prediction': ml_prediction
                     }
                     new_signals.append(signal_data)
                     
                     emoji = "🟢 LONG" if signal.signal_type == 'buy' else "🔴 SHORT"
+                    ml_info = f" [ML: {ml_prediction['success_probability']:.0%}]" if ml_prediction else ""
                     print(f"   {emoji} {ticker} @ ${signal.entry_price:.2f} "
-                          f"({signal.strategy}, Konfidenz: {signal.confidence:.0%})")
+                          f"({signal.strategy}{ml_info})")
         
         if not new_signals:
             print("   Keine neuen Signale (Markt hat keine klaren Setups)")
@@ -147,6 +217,17 @@ class TradeForge:
         
         learning_report = self.adaptive_optimizer.generate_learning_report()
         print(learning_report)
+        
+        # 🤖 ML MODEL TRAINING (einmal pro Tag)
+        if self.ml_optimizer:
+            print("\n🤖 ML Model Training...")
+            trained = self.ml_optimizer.train_models()
+            if trained:
+                print("   ✅ ML Models erfolgreich trainiert!")
+                ml_report = self.ml_optimizer.generate_ml_report()
+                print(ml_report)
+            else:
+                print("   ℹ️  Nicht genug Daten für ML-Training (mindestens 20 Trades pro Strategie erforderlich)")
         
         # Strategie-Parameter automatisch anpassen (nach 20 Trades)
         total_trades = sum(
