@@ -25,7 +25,7 @@ except ImportError:
 
 @dataclass
 class TradeFeatures:
-    """Features eines Trades für ML"""
+    """Features eines Trades für ML - jetzt mit Advanced Analysis Features"""
     ticker: str
     strategy: str
     entry_price: float
@@ -38,6 +38,15 @@ class TradeFeatures:
     market_trend: float = 0  # -1 (bear) to 1 (bull)
     time_of_day: int = 12  # 0-23
     day_of_week: int = 0  # 0-6
+    # Neue Advanced Features
+    vwap_position: float = 0  # % über/unter VWAP
+    distance_to_support: float = 0  # % zum nächsten Support
+    distance_to_resistance: float = 0  # % zum nächsten Resistance
+    market_structure_trend: float = 0  # -1 (bearish) bis 1 (bullish)
+    pattern_detected: int = 0  # 0 = kein Pattern, 1 = Pattern gefunden
+    fib_38_2_position: float = 0.5  # Wo im Fibonacci-Bereich (0-1)
+    higher_highs_count: int = 0  # Anzahl Higher Highs (letzte 10 Perioden)
+    higher_lows_count: int = 0  # Anzahl Higher Lows
     
     def to_vector(self) -> np.ndarray:
         """Konvertiert zu Feature-Vektor für ML"""
@@ -51,7 +60,16 @@ class TradeFeatures:
             self.volume_ratio,
             self.market_trend,
             self.time_of_day,
-            self.day_of_week
+            self.day_of_week,
+            # Neue Features
+            self.vwap_position,
+            self.distance_to_support,
+            self.distance_to_resistance,
+            self.market_structure_trend,
+            self.pattern_detected,
+            self.fib_38_2_position,
+            self.higher_highs_count,
+            self.higher_lows_count
         ])
 
 
@@ -133,6 +151,19 @@ class MLStrategyOptimizer:
                 features.macd = float(macd_str)
             except:
                 pass
+        
+        # Parse VWAP Position (z.B. "VWAP: +2.3%")
+        if 'VWAP:' in setup:
+            try:
+                vwap_str = setup.split('VWAP:')[1].split('%')[0].strip()
+                features.vwap_position = float(vwap_str)
+            except:
+                pass
+        
+        # Parse Pattern Info
+        if 'Pattern:' in setup:
+            features.pattern_detected = 1
+            # Pattern-Typ könnte auch geparst werden
         
         return features
     
