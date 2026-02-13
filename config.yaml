@@ -1,0 +1,53 @@
+watchlist:
+  - AAPL    # Apple
+  - MSFT    # Microsoft
+  - NVDA    # NVIDIA
+  - AMZN    # Amazon
+  - GOOGL   # Alphabet
+  - META    # Meta
+  - TSLA    # Tesla
+  - BRK-B   # Berkshire Hathaway
+  - AVGO    # Broadcom
+  - JPM     # JPMorgan Chase
+
+# Trading Konfiguration
+trading:
+  initial_capital: 10000        # Startkapital in USD
+  risk_per_trade: 0.02          # 2% Risiko pro Trade
+  max_leverage: 10              # Maximaler Hebel
+  max_open_positions: 5         # Max gleichzeitige Trades
+  
+# Analyse-Intervalle
+intervals:
+  analysis: 15                  # Minuten zwischen Analysen
+  report_daily: "18:00"        # Uhrzeit für Tagesreport
+  
+# Strategie-Einstellungen
+strategies:
+  momentum:
+    enabled: true
+    lookback: 20
+    rsi_period: 14
+    rsi_overbought: 70
+    rsi_oversold: 30
+    
+  breakout:
+    enabled: true
+    volume_threshold: 1.5
+    lookback_periods: 20
+    
+  mean_reversion:
+    enabled: true
+    bb_period: 20
+    bb_std: 2
+    
+# Daten-Einstellungen
+data:
+  history_days: 60             # Tage historische Daten
+  timeframe: "15m"             # 15-Minuten Charts
+  
+# Reporting
+reporting:
+  telegram_enabled: false
+  save_charts: true
+  detail_level: "high"         # low/medium/high
