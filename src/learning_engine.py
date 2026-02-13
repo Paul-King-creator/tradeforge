@@ -85,7 +85,7 @@ class LearningEngine:
                 )
             elif win_rate < 40:
                 recommendations.append(
-                    f"⚠️ {strategy}: Schwache Performance ({win_rate:.0f}% Win Rate) - Überarbeiten oder deaktivieren"
+                    f"⚠️ {strategy}: Schwache Performance ({win_rate:.0f}% Win Rate) - Überarbeiten"
                 )
         
         conn.close()
@@ -112,7 +112,7 @@ class LearningEngine:
         for rr, pnl in rr_data:
             if rr is None:
                 continue
-            rr_bucket = round(rr * 2) / 2  # Runden auf 0.5 Schritte
+            rr_bucket = round(rr * 2) / 2
             if rr_bucket not in rr_performance:
                 rr_performance[rr_bucket] = []
             rr_performance[rr_bucket].append(pnl)
@@ -122,7 +122,7 @@ class LearningEngine:
         best_avg_pnl = float('-inf')
         
         for rr, pnls in rr_performance.items():
-            if len(pnls) >= 3:  # Mindestens 3 Trades
+            if len(pnls) >= 3:
                 avg_pnl = statistics.mean(pnls)
                 if avg_pnl > best_avg_pnl:
                     best_avg_pnl = avg_pnl
@@ -154,7 +154,7 @@ class LearningEngine:
         if recommendations:
             report.extend(recommendations)
         else:
-            report.append("Noch nicht genug Daten für Empfehlungen (mind. 5 Trades pro Strategie)")
+            report.append("Noch nicht genug Daten fuer Empfehlungen")
         
         report.extend([
             "",
@@ -164,7 +164,7 @@ class LearningEngine:
             if optimal_params['optimal_risk_reward'] else "Noch nicht genug Daten",
             "",
             "🎯 GEWINN MUSTER",
-            "-” * 40,
+            "-" * 40,
         ])
         
         for strategy, data in patterns['winning'].items():
